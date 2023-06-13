@@ -1,7 +1,4 @@
-import useTaskContext from "../contexts/TaskContext";
-
 const Todo = ({ task, index }) => {
-  const { dispatch } = useTaskContext();
   return (
     <div>
       <p>{task.name}</p>

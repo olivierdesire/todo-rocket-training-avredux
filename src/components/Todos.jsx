@@ -1,8 +1,6 @@
 import Todo from "./Todo";
-import useTaskContext from "../contexts/TaskContext";
 
 const Todos = () => {
-  const { state } = useTaskContext();
   return (
     <div>
       {state.sortTasks ? (

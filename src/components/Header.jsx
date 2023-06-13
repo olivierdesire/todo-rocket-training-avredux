@@ -1,6 +1,4 @@
-import useTaskContext from "../contexts/TaskContext";
 const Header = () => {
-  const { state } = useTaskContext();
   return (
     <div>
       <h1>My Todo List</h1>

@@ -1,9 +1,7 @@
 import { useState } from "react";
-import useTaskContext from "../contexts/TaskContext";
 
 const ToolBar = () => {
   console.log("Toolbar se render");
-  const { state, dispatch } = useTaskContext();
 
   const [task, setTask] = useState("");
 
