@@ -1,8 +1,30 @@
 import Todo from "./Todo";
+import useTaskContext from "../contexts/TaskContext";
+
 const Todos = () => {
+  const { state } = useTaskContext();
   return (
     <div>
-      Faire un map sur le tableau des tâche et appelé à chaque fois <Todo />
+      {state.sortTasks ? (
+        <div>
+          <h2> Tâches faites </h2>
+          {state.tasks.map((elem, index) => {
+            if (elem.isDone)
+              return <Todo task={elem} key={elem.name} index={index} />;
+            else return null;
+          })}
+          <h2> Tâches non faites </h2>
+          {state.tasks.map((elem, index) => {
+            if (!elem.isDone)
+              return <Todo task={elem} key={elem.name} index={index} />;
+            else return null;
+          })}
+        </div>
+      ) : (
+        state.tasks.map((elem, index) => {
+          return <Todo task={elem} key={elem.name} index={index} />;
+        })
+      )}
     </div>
   );
 };

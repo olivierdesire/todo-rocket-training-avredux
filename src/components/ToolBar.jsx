@@ -3,25 +3,19 @@ import useTaskContext from "../contexts/TaskContext";
 
 const ToolBar = () => {
   console.log("Toolbar se render");
-  const {
-    tasks,
-    numberOfDoneTasks,
-    numberOfUndoneTasks,
-    lastState,
-    sortTasks,
-    dispatch,
-  } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
 
   const [task, setTask] = useState("");
 
-  const handleRegister = () => {
-    console.log("task", task);
-    dispatch({ type: "ADD_TASK", payload: task });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch({ type: "ADD_TASK", payload: { name: task, isDone: false } });
+    setTask("");
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           id="task"
@@ -30,10 +24,24 @@ const ToolBar = () => {
             setTask(e.target.value);
           }}
         />
-        <button onClick={handleRegister}>Register task</button>
+        <button type="submit">Register task</button>
         <button>Undo last event</button>
-        <button>reset</button>
-        <button>unsort my tasks/sort My tasks</button>
+        <button
+          type="button"
+          onClick={() => {
+            dispatch({ type: "RESET" });
+          }}
+        >
+          reset
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            dispatch({ type: "TOGGLE_SORT_TASKS" });
+          }}
+        >
+          unsort my tasks/sort My tasks
+        </button>
       </form>
     </div>
   );
