@@ -10,12 +10,11 @@ const initialState = {
 
 const taskReducer = (state, action) => {
   const { type, payload } = action;
+  console.log("payload>>", payload);
   switch (type) {
     case "ADD_TASK":
-      const newTab = structuredClone(state.task);
-      newTab.push(payload);
       return {
-        tasks: newTab,
+        tasks: { name: payload, isDone: false },
         numberOfUndoneTasks: state.numberOfUndoneTasks++,
       };
     default:

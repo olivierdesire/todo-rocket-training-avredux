@@ -15,8 +15,8 @@ const ToolBar = () => {
   const [task, setTask] = useState("");
 
   const handleRegister = () => {
+    console.log("task", task);
     dispatch({ type: "ADD_TASK", payload: task });
-    console.log("tasks", tasks);
   };
 
   return (
@@ -30,13 +30,7 @@ const ToolBar = () => {
             setTask(e.target.value);
           }}
         />
-        <button
-          onClick={() => {
-            handleRegister;
-          }}
-        >
-          Register task
-        </button>
+        <button onClick={handleRegister}>Register task</button>
         <button>Undo last event</button>
         <button>reset</button>
         <button>unsort my tasks/sort My tasks</button>
